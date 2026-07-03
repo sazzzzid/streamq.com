@@ -9,17 +9,19 @@ interface ErrorPageProps {
 
 export default function Error({ error, reset }: ErrorPageProps) {
   return (
-    <section className="section flex min-h-[50vh] flex-1 items-center justify-center bg-paper">
-      <div className="container-brand max-w-lg space-y-6 text-center">
-        <span className="sticker">Error</span>
-        <h1 className="section-title font-heading">Something went wrong</h1>
-        <p className="body-copy">
-          The page failed to load. You can try again, or head back to the homepage.
-        </p>
-        {process.env.NODE_ENV === "development" ? (
-          <p className="font-mono text-sm text-ink-light">{error.message}</p>
-        ) : null}
-        <div className="flex flex-col justify-center gap-3 sm:flex-row">
+    <main id="main" className="section flex min-h-[60vh] flex-1 items-center justify-center bg-paper py-16">
+      <div className="container-brand max-w-lg space-y-8 text-center">
+        <div className="space-y-4">
+          <span className="sticker">Error</span>
+          <h1 className="section-title font-heading">Something went wrong</h1>
+          <p className="body-copy">
+            The page failed to load. You can try again, or head back to the homepage.
+          </p>
+          {process.env.NODE_ENV === "development" ? (
+            <p className="font-mono text-sm text-ink-light">{error.message}</p>
+          ) : null}
+        </div>
+        <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
           <button type="button" onClick={reset} className="btn-primary">
             Try again
           </button>
@@ -28,6 +30,6 @@ export default function Error({ error, reset }: ErrorPageProps) {
           </Link>
         </div>
       </div>
-    </section>
+    </main>
   )
 }

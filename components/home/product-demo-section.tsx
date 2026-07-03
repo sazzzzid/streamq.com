@@ -1,38 +1,50 @@
-import { CodeSnippet } from "@/components/home/code-snippet"
+import { ExternalLink } from "lucide-react"
+import { LazyCodeSnippet } from "@/components/home/lazy-code-snippet"
 import { MotionReveal } from "@/components/home/motion-reveal"
+import { NpmInstallCard } from "@/components/home/npm-install-card"
 import { SectionIntro } from "@/components/home/section-intro"
-import { howItWorks, playerExample } from "@/lib/home-content"
+import { playerExample } from "@/lib/home-content"
+import { STREAMQ_DOCS_URL } from "@/lib/site-links"
 
 export function ProductDemoSection() {
   return (
-    <section id="demo" className="section-lg bg-paper">
+    <section id="install" className="section-lg scroll-mt-24 bg-paper">
       <div className="container-brand editorial-stack">
         <MotionReveal>
           <SectionIntro
-            eyebrow="Newest release"
-            title="Install in minutes"
-            description="Same API as the live player above."
-            sticker="Quick start"
+            eyebrow="Quick start"
+            title="Install in under 5 minutes"
+            description="npm install, add your sq_live_* key, point at your manifest."
+            sticker="Under 5 min"
           />
         </MotionReveal>
 
         <MotionReveal delay={0.05}>
-          <CodeSnippet code={playerExample} />
+          <NpmInstallCard />
         </MotionReveal>
 
-        <MotionReveal delay={0.08}>
-          <ol className="grid gap-4 md:grid-cols-3">
-            {howItWorks.map((item, index) => (
-              <li
-                key={item.step}
-                className={index === 1 ? "card-product tilt-right space-y-1" : "card-product space-y-1"}
+        <div id="example" className="scroll-mt-24">
+          <MotionReveal delay={0.08}>
+            <LazyCodeSnippet code={playerExample} filename="App.tsx" />
+          </MotionReveal>
+        </div>
+
+        <MotionReveal delay={0.1}>
+          <div id="docs" className="scroll-mt-24">
+            <p className="body-copy text-sm text-ink-soft">
+              Full API reference and HLS/DASH setup:{" "}
+              <a
+                href={`${STREAMQ_DOCS_URL}?activeTab=readme`}
+                className="inline-flex items-center gap-1 font-bold text-orange hover:underline"
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label="Open @streamq/player README on npm (opens in new tab)"
               >
-                <span className="sticker text-xs">{item.step}</span>
-                <p className="font-heading text-lg font-bold text-ink">{item.title}</p>
-                <p className="body-copy text-base">{item.detail}</p>
-              </li>
-            ))}
-          </ol>
+                npm README
+                <ExternalLink className="size-3.5" aria-hidden="true" />
+              </a>
+            </p>
+          </div>
         </MotionReveal>
       </div>
     </section>

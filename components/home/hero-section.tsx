@@ -1,16 +1,16 @@
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { HashLink } from "@/components/site/hash-link"
 import { MotionReveal } from "@/components/home/motion-reveal"
 import { PlayerPreview } from "@/components/home/player-preview"
 import {
-  heroBullets,
   heroKicker,
   heroPosterLine1,
   heroPosterLine2,
   heroSubtitle,
   heroWildLine,
 } from "@/lib/home-content"
-import { STREAMQ_TRY_PATH } from "@/lib/site-links"
+import { STREAMQ_DEMO_ANCHOR, STREAMQ_GET_STARTED_PATH } from "@/lib/site-links"
+import Link from "next/link"
 
 export function HeroSection() {
   return (
@@ -21,10 +21,7 @@ export function HeroSection() {
 
       <div className="container-brand editorial-grid relative z-10 items-center gap-12 lg:gap-20">
         <MotionReveal className="space-y-7">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="sticker">@streamq/player</span>
-            <span className="sticker-pink sticker text-xs">npm install</span>
-          </div>
+          <span className="sticker">@streamq/player</span>
 
           <div className="space-y-3">
             <p className="poster-kicker">{heroKicker}</p>
@@ -40,26 +37,18 @@ export function HeroSection() {
 
           <p className="body-copy max-w-md">{heroSubtitle}</p>
 
-          <ul className="flex flex-wrap gap-2">
-            {heroBullets.map((item) => (
-              <li key={item} className="pill-tag">
-                {item}
-              </li>
-            ))}
-          </ul>
-
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link href={STREAMQ_TRY_PATH} className="btn-primary">
-              Try it out
+            <HashLink href={STREAMQ_DEMO_ANCHOR} className="btn-primary">
+              Live demo
               <ArrowRight className="size-5" aria-hidden="true" />
-            </Link>
-            <Link href="#pricing" className="btn-outline">
-              View pricing
+            </HashLink>
+            <Link href={STREAMQ_GET_STARTED_PATH} className="btn-outline">
+              Get license
             </Link>
           </div>
         </MotionReveal>
 
-        <MotionReveal delay={0.1} className="w-full" id="player">
+        <MotionReveal delay={0.1} className="w-full">
           <div className="floating tilt-right">
             <PlayerPreview />
           </div>

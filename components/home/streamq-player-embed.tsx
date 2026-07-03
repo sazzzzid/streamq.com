@@ -1,10 +1,11 @@
 "use client"
 
+import "@streamq/player/baseline.css"
 import { StreamqPlayer } from "@streamq/player"
 import { POSTER_URL, STREAMQ_DEMO_LICENSE } from "@/lib/streamq-player-poster"
 import type { StreamSource } from "@/lib/stream-source"
 
-interface StreamqPlayerEmbedProps {
+export interface StreamqPlayerEmbedProps {
   source: StreamSource
 }
 

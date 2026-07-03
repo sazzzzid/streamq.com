@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { CtaSection } from "@/components/home/cta-section"
-import { EnterpriseSection } from "@/components/home/enterprise-section"
 import { FaqSection } from "@/components/home/faq-section"
 import { HeroSection } from "@/components/home/hero-section"
 import { IncludedSection } from "@/components/home/included-section"
@@ -18,10 +17,9 @@ export default function Home() {
       <HomeJsonLd />
       <main id="main">
         <HeroSection />
-        <PerformanceSection />
         <ProductDemoSection />
         <IncludedSection />
-        <EnterpriseSection />
+        <PerformanceSection />
         <PricingSection />
         <FaqSection />
         <CtaSection />

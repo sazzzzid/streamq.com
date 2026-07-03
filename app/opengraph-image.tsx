@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og"
 import { DEFAULT_OG_DESCRIPTION, SITE_NAME } from "@/lib/seo"
+import { SITE_DOMAIN } from "@/lib/site-config"
 
 export const alt = "StreamQ Player — React video SDK for HLS, DASH, and live streaming"
 export const size = { width: 1200, height: 630 }
@@ -44,7 +45,12 @@ export default function OpenGraphImage() {
               }}
             />
           </div>
-          <p style={{ fontSize: 42, fontWeight: 700 }}>{SITE_NAME}</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <p style={{ fontSize: 42, fontWeight: 700, margin: 0 }}>{SITE_NAME}</p>
+            <p style={{ fontSize: 24, fontWeight: 700, margin: 0, color: "#e85a24" }}>
+              {SITE_DOMAIN}
+            </p>
+          </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "920px" }}>
@@ -54,16 +60,17 @@ export default function OpenGraphImage() {
               fontWeight: 700,
               lineHeight: 1.02,
               letterSpacing: "-0.04em",
+              margin: 0,
             }}
           >
             React video SDK for HLS, DASH & live
           </p>
-          <p style={{ fontSize: 30, lineHeight: 1.4, color: "#4a4a4a" }}>
+          <p style={{ fontSize: 30, lineHeight: 1.4, color: "#4a4a4a", margin: 0 }}>
             {DEFAULT_OG_DESCRIPTION}
           </p>
         </div>
 
-        <p style={{ fontSize: 28, fontWeight: 700, color: "#e85a24" }}>
+        <p style={{ fontSize: 28, fontWeight: 700, color: "#e85a24", margin: 0 }}>
           npm install @streamq/player
         </p>
       </div>

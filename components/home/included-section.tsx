@@ -34,13 +34,13 @@ const accentBg = {
 
 export function IncludedSection() {
   return (
-    <section id="included" className="section-lg bg-paper">
+    <section id="included" className="section-lg scroll-mt-24 bg-paper">
       <div className="container-brand editorial-stack">
         <MotionReveal>
           <SectionIntro
             eyebrow="Super things included"
-            title="Everything in @streamq/player"
-            description="One npm package for playback, UI, subtitles, live mode, and license control."
+            title="What's in the box"
+            description="Playback, UI, live mode, subtitles, and license control — one npm package, no extra installs."
             sticker="Tier 1"
           />
         </MotionReveal>

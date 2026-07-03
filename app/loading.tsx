@@ -1,6 +1,7 @@
 export default function Loading() {
   return (
-    <div
+    <main
+      id="main"
       className="section flex min-h-[50vh] flex-1 items-center justify-center bg-paper"
       aria-busy="true"
       aria-live="polite"
@@ -13,6 +14,6 @@ export default function Loading() {
         />
         <p className="eyebrow">Loading StreamQ</p>
       </div>
-    </div>
+    </main>
   )
 }

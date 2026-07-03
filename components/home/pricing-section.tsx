@@ -1,25 +1,28 @@
 import Link from "next/link"
 import { Check } from "lucide-react"
+import { HashLink } from "@/components/site/hash-link"
 import { ComparisonTable } from "@/components/home/comparison-table"
 import { MotionReveal } from "@/components/home/motion-reveal"
 import { SectionIntro } from "@/components/home/section-intro"
 import { pricingTiers } from "@/lib/home-content"
-import { STREAMQ_CONTACT_MAILTO, STREAMQ_NPM_URL, STREAMQ_TRY_PATH } from "@/lib/site-links"
+import { drmPlaybackNote, licenseScopeNote } from "@/lib/pricing-guide"
+import { getGetStartedPath } from "@/lib/pricing-checkout"
+import { STREAMQ_NPM_URL, STREAMQ_DEMO_ANCHOR, STREAMQ_PARTNERS_PATH } from "@/lib/site-links"
 import { cn } from "@/lib/utils"
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="section-lg bg-paper">
+    <section id="pricing" className="section-lg scroll-mt-24 bg-paper">
       <div className="container-brand editorial-stack">
         <MotionReveal>
           <SectionIntro
             eyebrow="Pricing"
             title="Simple license tiers"
-            description="Start free with a demo key. Player from $49/mo. Premium from $499/mo with DRM and all extensions."
+            description="Evaluation is free. Player for one app. Studio for agencies. Premium for DRM playback and enterprise extensions."
           />
         </MotionReveal>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {pricingTiers.map((tier, index) => (
             <MotionReveal key={tier.name} delay={index * 0.05}>
               <article
@@ -28,12 +31,19 @@ export function PricingSection() {
                   tier.highlighted ? "card ring-2 ring-orange" : "card-static",
                 )}
               >
-                {tier.highlighted ? (
-                  <span className="sticker w-fit text-xs">Popular</span>
-                ) : null}
-                {tier.name === "Premium" ? (
-                  <span className="sticker w-fit bg-purple text-xs text-white">DRM-ready</span>
-                ) : null}
+                {(tier.highlighted || tier.slug === "premium" || tier.slug === "agency") && (
+                  <div className="flex flex-wrap gap-2">
+                    {tier.highlighted ? (
+                      <span className="sticker w-fit text-xs">Popular</span>
+                    ) : null}
+                    {tier.slug === "premium" ? (
+                      <span className="sticker w-fit bg-purple text-xs text-white">DRM capable</span>
+                    ) : null}
+                    {tier.slug === "agency" ? (
+                      <span className="sticker w-fit bg-blue text-xs text-white">For agencies</span>
+                    ) : null}
+                  </div>
+                )}
 
                 <div className="space-y-2">
                   <p className="eyebrow">{tier.name}</p>
@@ -62,18 +72,28 @@ export function PricingSection() {
                   ))}
                 </ul>
 
-                <div className="mt-auto flex flex-col gap-2">
-                  {tier.name === "Evaluation" ? (
-                    <Link href={STREAMQ_TRY_PATH} className="btn-outline w-fit text-sm">
+                <div className="mt-auto flex flex-col gap-3 pt-2">
+                  {tier.slug === "evaluation" ? (
+                    <HashLink href={STREAMQ_DEMO_ANCHOR} className="btn-outline btn-sm w-fit">
                       Try it out
+                    </HashLink>
+                  ) : tier.slug === "agency" ? (
+                    <Link href={STREAMQ_PARTNERS_PATH} className="btn-outline btn-sm w-fit">
+                      Studio for agencies
                     </Link>
                   ) : (
-                    <a href={STREAMQ_CONTACT_MAILTO} className="btn-outline w-fit text-sm">
-                      Contact sales
-                    </a>
+                    <Link
+                      href={getGetStartedPath(tier.slug)}
+                      className={cn(
+                        "btn-sm w-fit",
+                        tier.highlighted ? "btn-primary" : "btn-outline",
+                      )}
+                    >
+                      {tier.slug === "premium" ? "Get Premium" : "Get license"}
+                    </Link>
                   )}
 
-                  {tier.name !== "Premium" ? (
+                  {tier.slug === "evaluation" || tier.slug === "player" ? (
                     <a
                       href={STREAMQ_NPM_URL}
                       className="text-sm font-bold text-ink-soft underline-offset-4 hover:text-ink hover:underline"
@@ -90,9 +110,10 @@ export function PricingSection() {
         </div>
 
         <MotionReveal delay={0.1}>
-          <div className="space-y-4">
-            <h3 className="feature-title text-2xl">Player vs enterprise</h3>
+          <div className="space-y-4 pt-2">
             <ComparisonTable />
+            <p className="body-copy text-sm text-ink-soft">{drmPlaybackNote}</p>
+            <p className="body-copy text-sm text-ink-soft">{licenseScopeNote}</p>
           </div>
         </MotionReveal>
       </div>

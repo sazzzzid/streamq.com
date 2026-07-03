@@ -1,8 +1,9 @@
-import { StreamqPlayerDemo } from "@/components/home/streamq-player-demo"
+import { LazyStreamqPlayerEmbed } from "@/components/player/lazy-streamq-player-embed"
+import { DEFAULT_SOURCE } from "@/lib/streamq-demo-sources"
 
 export function PlayerPreview() {
   return (
-    <div className="card-shell" aria-label="@streamq/player preview">
+    <div className="player-shell card-shell scroll-mt-24" id="player" aria-label="@streamq/player preview">
       <div className="player-preview-header">
         <p className="font-mono text-sm font-bold text-ink">@streamq/player</p>
         <span className="sticker text-xs">Live demo</span>
@@ -10,7 +11,7 @@ export function PlayerPreview() {
 
       <div className="player-embed aspect-video">
         <div className="player-embed-root">
-          <StreamqPlayerDemo />
+          <LazyStreamqPlayerEmbed source={DEFAULT_SOURCE} posterPriority />
         </div>
       </div>
     </div>

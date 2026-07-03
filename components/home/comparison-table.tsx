@@ -26,8 +26,8 @@ function ComparisonCell({ value }: { value: ComparisonValue }) {
     )
   }
 
-  if (value === "dash") {
-    return <span className="text-ink-soft">Preset only</span>
+  if (value === "preset") {
+    return <span className="text-ink-soft">Preset layouts</span>
   }
 
   return <span className="text-ink-soft">{value}</span>
@@ -42,13 +42,13 @@ export function ComparisonTable() {
       <div className="comparison-table-wrap">
         <table className="comparison-table">
           <caption className="sr-only">
-            Feature comparison between @streamq/player and enterprise extensions
+            Player vs Premium — features and DRM playback
           </caption>
           <thead>
             <tr>
               <th scope="col">Capability</th>
               <th scope="col">Player</th>
-              <th scope="col">Enterprise</th>
+              <th scope="col">Premium</th>
             </tr>
           </thead>
           <tbody>
@@ -59,7 +59,7 @@ export function ComparisonTable() {
                   <ComparisonCell value={row.player} />
                 </td>
                 <td>
-                  <ComparisonCell value={row.enterprise} />
+                  <ComparisonCell value={row.premium} />
                 </td>
               </tr>
             ))}

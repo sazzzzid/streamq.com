@@ -1,3 +1,5 @@
+import { STREAMQ_DEMO_LICENSE } from "@/lib/streamq-player-poster"
+
 export const heroPosterLine1 = "Stream"
 export const heroPosterLine2 = "super."
 export const heroKicker = "Production-ready video SDK"
@@ -8,12 +10,6 @@ export const heroTagline =
 
 export const heroSubtitle =
   "HLS, DASH, live streaming, cinematic UI, and sq_live_* license control — in one install."
-
-export const heroBullets = [
-  "HLS, DASH & live",
-  "Ready-made UI",
-  "License control",
-] as const
 
 export interface PerformanceStat {
   value: string
@@ -52,63 +48,44 @@ export const performanceStats = [
   },
 ] as const satisfies readonly PerformanceStat[]
 
-export interface PerformanceHighlight {
-  id: string
-  title: string
-  summary: string
-  accent: FeatureAccent
+export interface BenchmarkRow {
+  metric: string
+  streamq: string
+  alternative: string
 }
 
-export const performanceHighlights = [
+export const performanceBenchmarks = [
   {
-    id: "lazy",
-    title: "Lazy-loaded engines",
-    summary:
-      "Heavy streaming engines load only when playback starts — not on page load. HLS users never download Shaka; DASH users never download hls.js.",
-    accent: "orange",
+    metric: "Initial JS (gzip)",
+    streamq: "~79 KB",
+    alternative: "200–400 KB+ (player + UI + adapters)",
   },
   {
-    id: "single",
-    title: "Single package",
-    summary:
-      "One npm install — player, UI, adapters, and license validation. Integrate in an afternoon, not a quarter.",
-    accent: "blue",
+    metric: "Streaming engine",
+    streamq: "Lazy on first play",
+    alternative: "Often bundled at page load",
   },
   {
-    id: "css",
-    title: "No CSS-in-JS runtime",
-    summary:
-      "@streamq/player/baseline.css is static CSS. Theme with variables — no styled-components or emotion overhead.",
-    accent: "green",
+    metric: "License gating",
+    streamq: "Built-in sq_live_* check",
+    alternative: "Custom backend + UI",
   },
   {
-    id: "budgets",
-    title: "CI bundle budgets",
-    summary:
-      "Strict size limits on every package in CI. Enterprise teams get proof that bundle growth is monitored.",
-    accent: "yellow",
+    metric: "Player UI",
+    streamq: "Included — 4 layouts",
+    alternative: "Build controls from scratch",
   },
   {
-    id: "safari",
-    title: "Safari native HLS",
-    summary:
-      "On Safari, HLS can play natively — often skipping hls.js entirely for better battery and faster start.",
-    accent: "purple",
+    metric: "Time to first stream",
+    streamq: "Under 5 minutes",
+    alternative: "Days to weeks",
   },
   {
-    id: "license",
-    title: "Lightweight license check",
-    summary:
-      "Pass license=\"sq_live_*\" only. Validation runs in the background — we manage Firestore, not your team.",
-    accent: "pink",
+    metric: "CSS runtime",
+    streamq: "Static baseline.css",
+    alternative: "CSS-in-JS overhead common",
   },
-] as const satisfies readonly PerformanceHighlight[]
-
-export const howItWorks = [
-  { step: "1", title: "Install", detail: "npm install @streamq/player" },
-  { step: "2", title: "Configure", detail: "Add your sq_live_* key" },
-  { step: "3", title: "Play", detail: "HLS, DASH, and live in one component" },
-] as const
+] as const satisfies readonly BenchmarkRow[]
 
 export type FeatureAccent = "orange" | "blue" | "green" | "yellow" | "purple" | "pink"
 
@@ -208,119 +185,113 @@ export const tier1Groups = [
   },
 ] as const satisfies readonly Tier1Group[]
 
-export const tier2Intro =
-  "Premium adds DRM, analytics, custom UI, and white-label on top of the full @streamq/player SDK."
-
-export interface EnterpriseHighlight {
-  name: string
-  detail: string
-}
-
-export const enterpriseHighlights = [
-  { name: "DRM", detail: "Widevine, PlayReady, FairPlay" },
-  { name: "Analytics & QoE", detail: "Startup, rebuffer, engagement events" },
-  { name: "Custom UI SDK", detail: "Headless core, React hooks, UI blocks" },
-  { name: "Casting & ads", detail: "Chromecast hooks & ad lifecycle" },
-  { name: "Themes & white-label", detail: "@streamq/themes & custom tokens" },
-  { name: "Enterprise SLA", detail: "Priority support & custom integrations" },
-] as const satisfies readonly EnterpriseHighlight[]
-
-export type ComparisonValue = "yes" | "no" | "dash" | string
+export type ComparisonValue = "yes" | "no" | "preset" | string
 
 export interface ComparisonRow {
   capability: string
   player: ComparisonValue
-  enterprise: ComparisonValue
+  premium: ComparisonValue
 }
 
 export const comparisonRows = [
-  { capability: "HLS / DASH / MP4", player: "yes", enterprise: "yes" },
-  { capability: "Live streaming", player: "yes", enterprise: "yes" },
-  { capability: "Subtitles", player: "yes", enterprise: "yes" },
-  { capability: "Cinematic UI", player: "yes", enterprise: "dash" },
-  { capability: "License control", player: "yes", enterprise: "yes" },
-  { capability: "Custom UI from scratch", player: "no", enterprise: "yes" },
-  { capability: "DRM", player: "no", enterprise: "yes" },
-  { capability: "Analytics / QoE", player: "no", enterprise: "yes" },
-  { capability: "Casting", player: "no", enterprise: "yes" },
-  { capability: "Ads", player: "no", enterprise: "yes" },
-  { capability: "Thumbnails", player: "no", enterprise: "yes" },
-  { capability: "Media Session", player: "no", enterprise: "yes" },
+  { capability: "HLS / DASH / MP4", player: "yes", premium: "yes" },
+  { capability: "Live streaming", player: "yes", premium: "yes" },
+  { capability: "Subtitles", player: "yes", premium: "yes" },
+  { capability: "Player UI", player: "4 preset layouts", premium: "Custom UI SDK" },
+  { capability: "License control", player: "yes", premium: "yes" },
+  { capability: "Custom UI from scratch", player: "no", premium: "yes" },
+  { capability: "DRM playback", player: "Clear streams", premium: "Widevine · PlayReady · FairPlay" },
+  { capability: "Analytics / QoE", player: "no", premium: "yes" },
+  { capability: "Casting", player: "no", premium: "yes" },
+  { capability: "Ads", player: "no", premium: "yes" },
+  { capability: "Thumbnails", player: "no", premium: "yes" },
+  { capability: "Media Session", player: "no", premium: "yes" },
   {
     capability: "Full theme system",
     player: "Basic CSS tokens",
-    enterprise: "@streamq/themes",
+    premium: "@streamq/themes",
   },
-  { capability: "White-label / SLA", player: "no", enterprise: "yes" },
+  { capability: "White-label / SLA", player: "no", premium: "yes" },
 ] as const satisfies readonly ComparisonRow[]
 
 export const pricingTiers = [
   {
+    slug: "evaluation" as const,
     name: "Evaluation",
     monthlyPrice: "Free",
     yearlyPrice: "",
-    audience: "Try before you buy",
+    audience: "Try the SDK before you buy",
     features: [
-      "Demo sq_live_* license key",
-      "All @streamq/player features",
-      "Docs & quick-start examples",
+      "Public demo sq_live_* key",
+      "Full Player SDK — HLS, DASH, live, subtitles",
+      "npm docs & homepage live demo",
     ],
     highlighted: false,
   },
   {
+    slug: "player" as const,
     name: "Player",
     monthlyPrice: "$49",
     yearlyPrice: "$499",
-    audience: "License key, docs & integration help",
+    audience: "One production app · single license key",
     features: [
-      "Production sq_live_* license key",
-      "Documentation & examples",
-      "Help with integration",
+      "1 production sq_live_* key",
+      "HLS, DASH, live, subtitles & license gate",
+      "Cinematic UI with CSS theming",
+      "Docs, examples & integration help",
     ],
     highlighted: true,
   },
   {
+    slug: "agency" as const,
+    name: "Studio",
+    monthlyPrice: "$199",
+    yearlyPrice: "$1,999",
+    audience: "Dev shops · 5 client keys · one invoice",
+    features: [
+      "5 production sq_live_* keys ($35/mo each extra)",
+      "Same Player SDK on every client project",
+      "30-min onboarding call for your team",
+      "Integration help on active client work",
+      "Premium add-on per client when needed",
+    ],
+    highlighted: false,
+  },
+  {
+    slug: "premium" as const,
     name: "Premium",
     monthlyPrice: "$499",
     yearlyPrice: "$4,999",
-    audience: "DRM-ready · all enterprise extensions",
+    audience: "Enterprise extensions · analytics & white-label",
     features: [
       "Everything in Player",
-      "DRM — Widevine, PlayReady, FairPlay",
-      "Analytics & QoE",
-      "Custom UI SDK",
-      "Casting, ads & thumbnails",
-      "Media Session API",
-      "Themes, white-label & enterprise SLA",
+      "DRM playback — Widevine, PlayReady, FairPlay (StreamQ backend)",
+      "Analytics, QoE & custom UI SDK",
+      "Casting, ads, thumbnails & Media Session",
+      "Full themes, white-label & priority SLA",
     ],
     highlighted: false,
   },
 ] as const
 
 export const playerExample = [
-  "npm install @streamq/player react react-dom",
-  "",
   "import '@streamq/player/baseline.css'",
   "import { StreamqPlayer } from '@streamq/player'",
   "",
-  "export function StreamqPlayerDemo() {",
+  "export function App() {",
   "  return (",
   "    <StreamqPlayer",
-  "      fillViewport",
-  "      license='sq_live_D8JK2LQ9MNP4' // Demo key only — replace with your production sq_live_* key",
+  `      license="${STREAMQ_DEMO_LICENSE}" // Demo key only — replace with your production sq_live_* key`,
   '      layout="default"',
-  '      radius="none"',
   "      source={{",
-  "        src: 'https://example.com/stream.mpd', // Your DASH .mpd or HLS .m3u8 URL",
-  "        type: 'dash', // 'dash' for .mpd · 'hls' for .m3u8",
+  "        src: 'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',",
+  "        type: 'hls',",
   "      }}",
   "      renderSubtitles",
   "      videoProps={{",
   "        crossOrigin: 'anonymous',",
-  "        muted: true,",
   "        playsInline: true,",
-  "        poster: '/posters/streamq-player-poster.png', // Optional poster before play",
-  "        preload: 'metadata',",
+  "        poster: '/posters/streamq-player-poster.png',",
   "      }}",
   "    />",
   "  )",

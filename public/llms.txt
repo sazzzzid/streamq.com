@@ -1,0 +1,37 @@
+# StreamQ Player — streamq.in
+
+> Commercial React video player SDK (@streamq/player) for HLS, DASH, live streaming, and OTT apps.
+
+## Product
+
+- npm package: @streamq/player
+- Site: https://streamq.in
+- npm: https://www.npmjs.com/package/@streamq/player
+- License format: sq_live_* (Firestore-validated commercial keys)
+
+## Key pages
+
+- Homepage + live demo: https://streamq.in/
+- Pricing & plans: https://streamq.in/#pricing
+- Get a license: https://streamq.in/get-started
+- Agencies (Studio volume licensing): https://streamq.in/partners
+- FAQ: https://streamq.in/#faq
+
+## Pricing (USD)
+
+- Evaluation: Free (public demo key on homepage)
+- Player: $49/mo or $499/yr — one production app
+- Studio: $199/mo or $1,999/yr — five client keys for agencies
+- Premium: $499/mo or $4,999/yr — DRM playback, analytics, white-label
+
+## Capabilities
+
+- HLS, DASH, progressive MP4
+- Lazy-loaded hls.js and Shaka Player
+- Live streaming, subtitles, cinematic React UI
+- Built-in license gating (no Firebase setup in client apps)
+- DRM playback on Premium (Widevine, PlayReady, FairPlay via StreamQ backend)
+
+## Contact
+
+- Email: imsazzid@gmail.com

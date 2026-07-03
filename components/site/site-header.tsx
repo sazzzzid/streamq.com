@@ -1,13 +1,13 @@
 import Link from "next/link"
+import { HashLink } from "@/components/site/hash-link"
 import { MobileNav } from "@/components/site/mobile-nav"
-import { STREAMQ_NPM_URL, STREAMQ_TRY_PATH } from "@/lib/site-links"
+import { STREAMQ_GET_STARTED_PATH, STREAMQ_HOME_ANCHORS } from "@/lib/site-links"
 
 const navLinks = [
-  { label: "Features", href: "#included" },
-  { label: "Try out", href: STREAMQ_TRY_PATH },
-  { label: "Docs", href: STREAMQ_NPM_URL, external: true },
-  { label: "Enterprise", href: "#enterprise" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Live demo", href: STREAMQ_HOME_ANCHORS.player },
+  { label: "Features", href: STREAMQ_HOME_ANCHORS.included },
+  { label: "Benchmarks", href: STREAMQ_HOME_ANCHORS.benchmarks },
+  { label: "Pricing", href: STREAMQ_HOME_ANCHORS.pricing },
 ] as const
 
 export function SiteHeader() {
@@ -19,38 +19,21 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main navigation" className="hidden items-center gap-8 xl:flex">
-          {navLinks.map((link) =>
-            "external" in link && link.external ? (
-              <a
-                key={link.label}
-                href={link.href}
-                className="font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
-              >
-                {link.label}
-              </Link>
-            ),
-          )}
+          {navLinks.map((link) => (
+            <HashLink
+              key={link.label}
+              href={link.href}
+              className="font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
+            >
+              {link.label}
+            </HashLink>
+          ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href={STREAMQ_NPM_URL}
-            className="btn-primary hidden px-6 py-3.5 text-sm sm:inline-flex"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Install package
-          </a>
+          <Link href={STREAMQ_GET_STARTED_PATH} className="btn-primary hidden px-6 py-3.5 text-sm sm:inline-flex">
+            Get license
+          </Link>
           <MobileNav />
         </div>
       </div>

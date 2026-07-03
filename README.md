@@ -1,10 +1,18 @@
-# streamq.com
+# streamq.in
 
-StreamQ marketing site — video infrastructure platform.
+StreamQ marketing site — React video player SDK (@streamq/player).
 
 ```bash
 npm install
 npm run dev
+```
+
+Production URL: **https://streamq.in**
+
+Set environment variables for production (see `.env.example`):
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://streamq.in
 ```
 
 Build for production:
@@ -13,5 +21,3 @@ Build for production:
 npm run build
 npm start
 ```
-
-Set `NEXT_PUBLIC_SITE_URL` in production for canonical URLs, sitemap, and Open Graph metadata.
