@@ -1,4 +1,4 @@
-import { PRODUCTION_SITE_URL } from "./site-config"
+import { PRODUCTION_SITE_URL, SITE_DOMAIN } from "./site-config"
 
 const STRIPE_CHECKOUT_HOSTS = new Set([
   "checkout.stripe.com",
@@ -69,9 +69,9 @@ export function parseStripeCheckoutUrl(
   return url
 }
 
-/** Fail fast when Vercel production is misconfigured. Called from next.config.ts at build time. */
+/** Validate optional overrides at build time. Production defaults to streamq.in. */
 export function assertProductionEnv(): void {
-  if (process.env.VERCEL_ENV !== "production") {
+  if (!process.env.NEXT_PUBLIC_SITE_URL) {
     return
   }
 
@@ -79,7 +79,35 @@ export function assertProductionEnv(): void {
 
   if (!siteUrl) {
     throw new Error(
-      "NEXT_PUBLIC_SITE_URL must be set to a valid https URL in production (e.g. https://streamq.in).",
+      "NEXT_PUBLIC_SITE_URL must be a valid https URL when set (e.g. https://streamq.in).",
     )
   }
+}
+
+export function resolveSiteUrl(): string {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
+
+  if (configured) {
+    return configured
+  }
+
+  if (process.env.VERCEL_ENV === "production") {
+    return PRODUCTION_SITE_URL
+  }
+
+  if (process.env.VERCEL_URL) {
+    const vercelHost = process.env.VERCEL_URL.replace(/\/$/, "")
+
+    if (vercelHost === SITE_DOMAIN || vercelHost === `www.${SITE_DOMAIN}`) {
+      return PRODUCTION_SITE_URL
+    }
+
+    return `https://${vercelHost}`
+  }
+
+  if (process.env.NODE_ENV === "production") {
+    return PRODUCTION_SITE_URL
+  }
+
+  return "http://localhost:3000"
 }

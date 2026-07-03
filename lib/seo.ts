@@ -1,12 +1,11 @@
 import type { Metadata } from "next"
+import { resolveSiteUrl } from "@/lib/env"
 import { pricingTiers } from "@/lib/home-content"
 import { getStreamqPlayerVersion } from "@/lib/npm-package"
 import {
   DEFAULT_OG_DESCRIPTION,
   OG_IMAGE_ALT,
-  PRODUCTION_SITE_URL,
   SITE_BRAND,
-  SITE_DOMAIN,
   SITE_PRODUCT_NAME,
   SITE_TAGLINE,
 } from "@/lib/site-config"
@@ -118,25 +117,7 @@ export const SEO_FAQS = [
 ] as const satisfies readonly FaqItem[]
 
 export function getSiteUrl(): string {
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")
-  }
-
-  if (process.env.VERCEL_ENV === "production" && process.env.VERCEL_URL) {
-    const vercelHost = process.env.VERCEL_URL.replace(/\/$/, "")
-
-    if (vercelHost === SITE_DOMAIN || vercelHost === `www.${SITE_DOMAIN}`) {
-      return PRODUCTION_SITE_URL
-    }
-
-    return `https://${vercelHost}`
-  }
-
-  if (process.env.NODE_ENV === "production") {
-    return PRODUCTION_SITE_URL
-  }
-
-  return "http://localhost:3000"
+  return resolveSiteUrl()
 }
 
 export function absoluteUrl(path = "/"): string {
