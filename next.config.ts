@@ -17,12 +17,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.streamq.in" }],
-        destination: "https://streamq.in/:path*",
-        permanent: true,
-      },
-      {
         source: "/try",
         destination: "/#player",
         permanent: true,
