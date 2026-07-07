@@ -2,18 +2,18 @@ diff --git a/node_modules/@streamq/player/dist/index.js b/node_modules/@streamq/
 index 310dea6..5309eaa 100644
 --- a/node_modules/@streamq/player/dist/index.js
 +++ b/node_modules/@streamq/player/dist/index.js
-@@ -10361,12 +10361,11 @@ var Kg = class {
+@@ -10859,12 +10859,11 @@ var hp = class {
    }
  };
- function Yg(e) {
--  return () => new Kg(e);
-+  return (_displayRoot) => new Kg(e);
+ function mp(e) {
+-  return () => new hp(e);
++  return (_displayRoot) => new hp(e);
  }
- function Hg(e) {
+ function gp(e) {
    return Object.freeze({
--    textDisplayFactory: Yg(e),
+-    textDisplayFactory: mp(e),
 -    streaming: Object.freeze({ alwaysStreamText: !0 })
-+    textDisplayFactory: Yg(e)
++    textDisplayFactory: mp(e)
    });
  }
- var Gi = !1;
+ function vp(e, t) {
