@@ -29,10 +29,13 @@ export function scrollToSection(hash: string): boolean {
   }
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  const header = document.querySelector(".site-header")
+  const offset = header instanceof HTMLElement ? header.offsetHeight : 80
+  const top = target.getBoundingClientRect().top + window.scrollY - offset
 
-  target.scrollIntoView({
+  window.scrollTo({
+    top: Math.max(0, top),
     behavior: prefersReducedMotion ? "auto" : "smooth",
-    block: "start",
   })
 
   const nextUrl = `${window.location.pathname}${window.location.search}#${hash}`

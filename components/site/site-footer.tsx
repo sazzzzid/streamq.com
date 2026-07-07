@@ -21,7 +21,7 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t-2 border-ink bg-paper py-16">
+    <footer className="border-t-2 border-ink bg-paper py-16 pb-[max(4rem,env(safe-area-inset-bottom))]">
       <div className="container-brand flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm space-y-4">
           <p className="font-heading text-3xl font-bold text-ink">StreamQ</p>
@@ -44,7 +44,7 @@ export function SiteFooter() {
                 {"external" in link && link.external ? (
                   <a
                     href={link.href}
-                    className="font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
+                    className="tap-target inline-flex items-center rounded-md py-2 font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
                     rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                     target={link.href.startsWith("mailto:") ? undefined : "_blank"}
                     {...("external" in link && link.external && !link.href.startsWith("mailto:")
@@ -56,14 +56,14 @@ export function SiteFooter() {
                 ) : "hash" in link && link.hash ? (
                   <HashLink
                     href={link.href}
-                    className="font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
+                    className="tap-target inline-flex items-center rounded-md py-2 font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
                   >
                     {link.label}
                   </HashLink>
                 ) : (
                   <Link
                     href={link.href}
-                    className="font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
+                    className="tap-target inline-flex items-center rounded-md py-2 font-heading text-sm font-bold text-ink-soft transition hover:text-ink"
                   >
                     {link.label}
                   </Link>

@@ -33,6 +33,7 @@ export const viewport: Viewport = {
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 }
 
 export const metadata: Metadata = {
@@ -69,7 +70,8 @@ export default function RootLayout({
       <body className="noise flex min-h-full flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-orange focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:z-50 focus:rounded-full focus:bg-orange focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+          style={{ top: "max(1rem, env(safe-area-inset-top))" }}
         >
           Skip to content
         </a>

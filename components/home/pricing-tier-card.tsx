@@ -63,7 +63,7 @@ function TierActions({ tier }: { tier: PricingTier }) {
       {tier.slug === "evaluation" || tier.slug === "player" ? (
         <a
           href={STREAMQ_NPM_URL}
-          className="card-inline-link"
+          className="card-inline-link tap-target inline-flex items-center"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -78,7 +78,7 @@ export function PricingTierCard({ tier }: { tier: PricingTier }) {
   return (
     <article
       className={cn(
-        "card-tier flex h-full flex-col gap-6",
+        "card flex h-full flex-col gap-6",
         tier.highlighted ? "card ring-2 ring-orange" : "card-static",
       )}
     >

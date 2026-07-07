@@ -240,7 +240,7 @@ export default function PartnersPage() {
           </blockquote>
         </section>
 
-        <section id="apply" className="scroll-mt-24 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+        <section id="apply" className="scroll-mt-header grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
           <div className="space-y-5">
             <div className="space-y-2">
               <p className="eyebrow">{partnerOnboarding.eyebrow}</p>

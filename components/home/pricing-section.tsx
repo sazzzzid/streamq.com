@@ -7,7 +7,7 @@ import { drmPlaybackNote, licenseScopeNote } from "@/lib/pricing-guide"
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="section-lg scroll-mt-24 bg-paper">
+    <section id="pricing" className="section-lg scroll-mt-header bg-paper">
       <div className="container-brand editorial-stack">
         <MotionReveal>
           <SectionIntro

@@ -36,7 +36,7 @@ const accentBg = {
 
 export function IncludedSection() {
   return (
-    <section id="included" className="section-lg scroll-mt-24 bg-paper">
+    <section id="included" className="section-lg scroll-mt-header bg-paper">
       <div className="container-brand editorial-stack">
         <MotionReveal>
           <SectionIntro
@@ -56,8 +56,8 @@ export function IncludedSection() {
                   id={group.id}
                   className={cn(
                     "card-product flex h-full flex-col gap-4",
-                    index % 3 === 1 && "tilt-left",
-                    index % 3 === 2 && "tilt-right",
+                    index % 3 === 1 && "tilt-left max-md:transform-none",
+                    index % 3 === 2 && "tilt-right max-md:transform-none",
                   )}
                 >
                   <div className="flex items-start gap-3">

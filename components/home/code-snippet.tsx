@@ -54,7 +54,7 @@ export function CodeSnippet({
           <button
             type="button"
             onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 font-mono text-xs font-semibold text-ink-soft transition hover:-translate-y-0.5 hover:text-ink"
+            className="code-snippet-copy inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line bg-white px-3 py-2 font-mono text-xs font-semibold text-ink-soft transition hover:text-ink"
             aria-label={
               copied
                 ? "Copied to clipboard"

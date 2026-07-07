@@ -6,7 +6,7 @@ import { performanceIntro, performanceStats } from "@/lib/home-content"
 export function PerformanceSection() {
   return (
     <section id="performance">
-      <div id="benchmarks" className="section-band scroll-mt-24 py-8 md:py-10">
+      <div id="benchmarks" className="section-band scroll-mt-header py-8 md:py-10">
         <div className="container-brand">
           <MotionReveal>
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

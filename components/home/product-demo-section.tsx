@@ -8,7 +8,7 @@ import { STREAMQ_DOCS_URL } from "@/lib/site-links"
 
 export function ProductDemoSection() {
   return (
-    <section id="install" className="section-lg scroll-mt-24 bg-paper">
+    <section id="install" className="section-lg scroll-mt-header bg-paper">
       <div className="container-brand editorial-stack">
         <MotionReveal>
           <SectionIntro
@@ -23,14 +23,14 @@ export function ProductDemoSection() {
           <NpmInstallCard />
         </MotionReveal>
 
-        <div id="example" className="scroll-mt-24">
+        <div id="example" className="scroll-mt-header">
           <MotionReveal delay={0.08}>
             <LazyCodeSnippet code={playerExample} filename="App.tsx" />
           </MotionReveal>
         </div>
 
         <MotionReveal delay={0.1}>
-          <div id="docs" className="scroll-mt-24">
+          <div id="docs" className="scroll-mt-header">
             <p className="body-copy text-sm text-ink-soft">
               Full API reference and HLS/DASH setup:{" "}
               <a

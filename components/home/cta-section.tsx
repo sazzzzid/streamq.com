@@ -5,7 +5,7 @@ import { STREAMQ_GET_STARTED_PATH } from "@/lib/site-links"
 
 export function CtaSection() {
   return (
-    <section id="cta" className="section-xl scroll-mt-24 pb-24">
+    <section id="cta" className="section-xl scroll-mt-header pb-24">
       <div className="container-brand">
         <MotionReveal>
           <div className="paper relative overflow-hidden border-2 border-ink bg-orange p-10 md:p-14">

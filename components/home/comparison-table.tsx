@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Check, ChevronDown, Minus } from "lucide-react"
+import { ComparisonMobileList } from "@/components/home/comparison-mobile-list"
 import { comparisonRows, type ComparisonValue } from "@/lib/home-content"
 import { cn } from "@/lib/utils"
 
@@ -11,7 +12,7 @@ function ComparisonCell({ value }: { value: ComparisonValue }) {
   if (value === "yes") {
     return (
       <span className="inline-flex items-center gap-1.5 font-bold text-green">
-        <Check className="size-4" aria-hidden="true" />
+        <Check className="size-4 shrink-0" aria-hidden="true" />
         Yes
       </span>
     )
@@ -20,7 +21,7 @@ function ComparisonCell({ value }: { value: ComparisonValue }) {
   if (value === "no") {
     return (
       <span className="inline-flex items-center gap-1.5 text-ink-light">
-        <Minus className="size-4" aria-hidden="true" />
+        <Minus className="size-4 shrink-0" aria-hidden="true" />
         No
       </span>
     )
@@ -39,7 +40,9 @@ export function ComparisonTable() {
 
   return (
     <div className="space-y-4">
-      <div className="comparison-table-wrap">
+      <ComparisonMobileList rows={rows} />
+
+      <div className="comparison-table-wrap hidden md:block">
         <table className="comparison-table">
           <caption className="sr-only">
             Player vs Premium — features and DRM playback
@@ -71,7 +74,7 @@ export function ComparisonTable() {
         <button
           type="button"
           onClick={() => setExpanded((open) => !open)}
-          className="inline-flex items-center gap-2 font-bold text-ink-soft transition hover:text-ink"
+          className="tap-target inline-flex items-center gap-2 rounded-full px-3 py-2 font-bold text-ink-soft transition hover:bg-paper hover:text-ink"
           aria-expanded={expanded}
         >
           {expanded ? "Show less" : `Show all ${comparisonRows.length} rows`}
