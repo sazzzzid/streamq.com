@@ -11,7 +11,7 @@ export const SITE_TAGLINE =
   "Commercial React video player SDK for HLS, DASH, live streaming, and OTT apps." as const
 
 export const DEFAULT_OG_DESCRIPTION =
-  "StreamQ Player (@streamq/player) is a production-ready React video SDK with cinematic UI, lazy-loaded HLS/DASH engines, and built-in license control. Try the live demo at streamq.in." as const
+  "StreamQ Player (@streamq/player) is a production-ready React video SDK with cinematic UI, lazy-loaded HLS/DASH engines, and built-in license control. Signed CDN URLs on Premium. Try the live demo at streamq.in." as const
 
 export const OG_IMAGE_ALT =
   "StreamQ Player — React video SDK for HLS, DASH, and live streaming on streamq.in" as const

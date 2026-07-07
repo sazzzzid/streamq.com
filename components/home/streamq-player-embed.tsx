@@ -17,13 +17,18 @@ export function StreamqPlayerEmbed({ source }: StreamqPlayerEmbedProps) {
       layout="default"
       radius="none"
       source={source}
+      videoFit="contain"
       renderSubtitles
+      mobile={{
+        autoFullscreenOnLandscape: true,
+        resumePlaybackOnVisible: true,
+      }}
       videoProps={{
-        crossOrigin: "anonymous",
+        crossOrigin: 'anonymous',
         muted: true,
         playsInline: true,
         poster: POSTER_URL,
-        preload: "metadata",
+        preload: 'metadata',
       }}
     />
   )

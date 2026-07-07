@@ -46,13 +46,17 @@ export const SEO_KEYWORDS = [
   "video player sdk india",
   "react video player agency",
   "white label video player",
+  "react reels player",
+  "9:16 video player react",
+  "signed url hls player",
+  "short form video player sdk",
 ] as const
 
 export const SEO_FAQS = [
   {
     question: "What is StreamQ Player?",
     answer:
-      "StreamQ Player is a commercial React video SDK distributed on npm as @streamq/player. It ships a cinematic player UI, HLS and DASH playback, live streaming support, subtitle rendering, and built-in sq_live_* license validation in a single package. Learn more at streamq.in.",
+      "StreamQ Player is a commercial React video SDK distributed on npm as @streamq/player. It ships a cinematic player UI, HLS and DASH playback, live streaming, subtitle rendering, and built-in sq_live_* license validation in a single package. Signed CDN URL manifests are included on Premium. Learn more at streamq.in.",
   },
   {
     question: "How does StreamQ compare to Mux, Bitmovin, and JW Player?",
@@ -63,6 +67,16 @@ export const SEO_FAQS = [
     question: "Does StreamQ support HLS and DASH?",
     answer:
       "Yes. Pass a manifest URL with type hls for .m3u8 streams or type dash for .mpd streams. hls.js and Shaka Player load lazily on first play — only the engine you need is downloaded.",
+  },
+  {
+    question: "Does StreamQ support signed CDN URLs?",
+    answer:
+      "Yes, on Premium. Tokenized and presigned manifests (CloudFront, S3, and similar CDN setups) work without extra adapter patches. Player and Studio tiers use standard manifest URLs; upgrade to Premium when your CDN requires signed .m3u8 or .mpd links.",
+  },
+  {
+    question: "Does StreamQ support portrait video and vertical feeds?",
+    answer:
+      "Yes. StreamqPlayer follows video metadata for 9:16 embeds. StreamqReelsFeed adds a vertical snap-scroll feed with windowed player mounts — included on Evaluation, Player, and Studio.",
   },
   {
     question: "Is StreamQ Player free to try?",
@@ -211,11 +225,9 @@ export const rootMetadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
+    shortcut: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
   openGraph: buildPageOpenGraph(
     "StreamQ Player | React Video SDK for HLS, DASH & Live Streaming",
@@ -463,6 +475,8 @@ export function buildSoftwareApplicationJsonLd() {
     ],
     featureList: [
       "HLS and DASH playback",
+      "Portrait video and StreamqReelsFeed",
+      "Signed CDN URL manifests on Premium",
       "Live streaming",
       "Lazy-loaded hls.js and Shaka",
       "Cinematic React player UI",

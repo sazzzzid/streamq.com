@@ -58,6 +58,8 @@ export default function RootLayout({
       className={`streamq-site ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-icon.svg" />
         <link rel="dns-prefetch" href="https://devstreaming-cdn.apple.com" />
         <link rel="dns-prefetch" href="https://storage.googleapis.com" />
         <link rel="dns-prefetch" href="https://media.axprod.net" />

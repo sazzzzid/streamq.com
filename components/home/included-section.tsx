@@ -4,6 +4,7 @@ import {
   KeyRound,
   Palette,
   Radio,
+  Smartphone,
   Subtitles,
   Tv,
 } from "lucide-react"
@@ -16,6 +17,7 @@ import type { LucideIcon } from "lucide-react"
 const groupIcons: Record<(typeof tier1Groups)[number]["id"], LucideIcon> = {
   commercial: KeyRound,
   playback: Tv,
+  reels: Smartphone,
   live: Radio,
   subtitles: Subtitles,
   ux: Clapperboard,
@@ -53,23 +55,31 @@ export function IncludedSection() {
                 <article
                   id={group.id}
                   className={cn(
-                    "card-product h-full space-y-4",
+                    "card-product flex h-full flex-col gap-4",
                     index % 3 === 1 && "tilt-left",
                     index % 3 === 2 && "tilt-right",
                   )}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-start gap-3">
                     <span
                       className={cn(
-                        "inline-flex size-11 items-center justify-center rounded-full text-white",
+                        "inline-flex size-10 shrink-0 items-center justify-center rounded-full text-white",
                         accentBg[group.accent],
                       )}
                     >
-                      <Icon className="size-5" aria-hidden="true" />
+                      <Icon className="size-4" aria-hidden="true" />
                     </span>
-                    <h3 className="font-heading text-lg font-bold text-ink">{group.title}</h3>
+                    <div className="min-w-0 space-y-1">
+                      <h3 className="card-product-title">{group.title}</h3>
+                      <p className="card-product-lead">{group.summary}</p>
+                    </div>
                   </div>
-                  <p className="body-copy text-base">{group.summary}</p>
+
+                  <ul className="card-product-points">
+                    {group.items.slice(0, 3).map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
                 </article>
               </MotionReveal>
             )

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { HashLink } from "@/components/site/hash-link"
 import { MobileNav } from "@/components/site/mobile-nav"
+import { StreamqMark } from "@/components/site/streamq-mark"
 import { STREAMQ_GET_STARTED_PATH, STREAMQ_HOME_ANCHORS } from "@/lib/site-links"
 
 const navLinks = [
@@ -14,8 +15,12 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b-2 border-ink bg-paper/95 backdrop-blur-md">
       <div className="container-brand flex h-20 items-center justify-between gap-6">
-        <Link href="/" className="font-heading text-2xl font-bold tracking-tight text-ink">
-          StreamQ
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2.5 font-heading text-2xl font-bold tracking-tight text-ink"
+        >
+          <StreamqMark className="size-9" />
+          <span>StreamQ</span>
         </Link>
 
         <nav aria-label="Main navigation" className="hidden items-center gap-8 xl:flex">

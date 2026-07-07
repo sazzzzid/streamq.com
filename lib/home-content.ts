@@ -9,7 +9,7 @@ export const heroTagline =
   "One npm package. One React component. Production-ready streaming."
 
 export const heroSubtitle =
-  "HLS, DASH, live streaming, cinematic UI, and sq_live_* license control — in one install."
+  "HLS, DASH, live streaming, cinematic controls, and sq_live_* license control — signed CDN URLs on Premium."
 
 export interface PerformanceStat {
   value: string
@@ -72,8 +72,13 @@ export const performanceBenchmarks = [
   },
   {
     metric: "Player UI",
-    streamq: "Included — 4 layouts",
+    streamq: "4 preset layouts",
     alternative: "Build controls from scratch",
+  },
+  {
+    metric: "Signed CDN URLs",
+    streamq: "Premium — tokenized .m3u8 / .mpd",
+    alternative: "Adapter patches per CDN",
   },
   {
     metric: "Time to first stream",
@@ -125,6 +130,19 @@ export const tier1Groups = [
     ],
   },
   {
+    id: "reels",
+    title: "Reels/Short",
+    summary: "9:16 portrait embeds and a vertical feed — same license gate and lazy engines.",
+    accent: "pink",
+    items: [
+      "StreamqReelsFeed — vertical snap-scroll with windowed mounts",
+      "Dynamic 9:16 aspect ratio from video metadata",
+      "Portrait-safe viewport sizing — no letterbox hacks",
+      "Per-clip posters, titles, and HLS/DASH sources",
+      "Touch gestures and center playback feedback",
+    ],
+  },
+  {
     id: "live",
     title: "Live",
     summary: "Live layout, jump-to-live, and edge detection built in.",
@@ -150,7 +168,7 @@ export const tier1Groups = [
   {
     id: "ux",
     title: "Player UI",
-    summary: "Cinematic controls, 4 layouts, gestures, PiP, and fullscreen.",
+    summary: "Cinematic controls, 4 layouts, dynamic aspect ratio, gestures, PiP, and fullscreen.",
     accent: "purple",
     items: [
       "Ready-made controls, overlays & settings",
@@ -195,6 +213,8 @@ export interface ComparisonRow {
 
 export const comparisonRows = [
   { capability: "HLS / DASH / MP4", player: "yes", premium: "yes" },
+  { capability: "Reels/Short (9:16)", player: "yes", premium: "yes" },
+  { capability: "Signed CDN URLs", player: "no", premium: "yes" },
   { capability: "Live streaming", player: "yes", premium: "yes" },
   { capability: "Subtitles", player: "yes", premium: "yes" },
   { capability: "Player UI", player: "4 preset layouts", premium: "Custom UI SDK" },
@@ -214,6 +234,26 @@ export const comparisonRows = [
   { capability: "White-label / SLA", player: "no", premium: "yes" },
 ] as const satisfies readonly ComparisonRow[]
 
+export type TierBadgeTone = "neutral" | "pink" | "purple" | "green" | "blue"
+
+export interface TierBadge {
+  label: string
+  tone: TierBadgeTone
+}
+
+export const reelsShortFeature = "Reels/Shorts UI format supported" as const
+
+export interface PricingTier {
+  slug: "evaluation" | "player" | "agency" | "premium"
+  name: string
+  monthlyPrice: string
+  yearlyPrice: string
+  audience: string
+  badges: readonly TierBadge[]
+  features: readonly string[]
+  highlighted: boolean
+}
+
 export const pricingTiers = [
   {
     slug: "evaluation" as const,
@@ -221,10 +261,12 @@ export const pricingTiers = [
     monthlyPrice: "Free",
     yearlyPrice: "",
     audience: "Try the SDK before you buy",
+    badges: [],
     features: [
       "Public demo sq_live_* key",
-      "Full Player SDK — HLS, DASH, live, subtitles",
-      "npm docs & homepage live demo",
+      "HLS, DASH, live & subtitles",
+      reelsShortFeature,
+      "Homepage live demo & npm docs",
     ],
     highlighted: false,
   },
@@ -234,9 +276,11 @@ export const pricingTiers = [
     monthlyPrice: "$49",
     yearlyPrice: "$499",
     audience: "One production app · single license key",
+    badges: [{ label: "Popular", tone: "neutral" }],
     features: [
       "1 production sq_live_* key",
       "HLS, DASH, live, subtitles & license gate",
+      reelsShortFeature,
       "Cinematic UI with CSS theming",
       "Docs, examples & integration help",
     ],
@@ -248,9 +292,11 @@ export const pricingTiers = [
     monthlyPrice: "$199",
     yearlyPrice: "$1,999",
     audience: "Dev shops · 5 client keys · one invoice",
+    badges: [{ label: "For agencies", tone: "blue" }],
     features: [
       "5 production sq_live_* keys ($35/mo each extra)",
       "Same Player SDK on every client project",
+      reelsShortFeature,
       "30-min onboarding call for your team",
       "Integration help on active client work",
       "Premium add-on per client when needed",
@@ -263,16 +309,21 @@ export const pricingTiers = [
     monthlyPrice: "$499",
     yearlyPrice: "$4,999",
     audience: "Enterprise extensions · analytics & white-label",
+    badges: [
+      { label: "DRM", tone: "purple" },
+      { label: "Signed URLs", tone: "green" },
+    ],
     features: [
       "Everything in Player",
-      "DRM playback — Widevine, PlayReady, FairPlay (StreamQ backend)",
+      "Signed CDN manifests — CloudFront, S3 & tokenized streams",
+      "DRM — Widevine, PlayReady, FairPlay",
       "Analytics, QoE & custom UI SDK",
       "Casting, ads, thumbnails & Media Session",
       "Full themes, white-label & priority SLA",
     ],
     highlighted: false,
   },
-] as const
+] as const satisfies readonly PricingTier[]
 
 export const playerExample = [
   "import '@streamq/player/baseline.css'",

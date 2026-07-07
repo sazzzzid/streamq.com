@@ -114,6 +114,17 @@ export interface VerticalPlaybook {
 
 export const verticalPlaybooks = [
   {
+    tag: "Short-form / social",
+    title: "Vertical feeds",
+    pitch:
+      "Ship 9:16 portrait embeds or a snap-scroll feed on Player and Studio — Premium adds signed CDN URLs.",
+    hooks: [
+      "StreamqReelsFeed with windowed mounts",
+      "Dynamic aspect ratio from metadata",
+      "Signed manifests on Premium",
+    ],
+  },
+  {
     tag: "OTT / VOD",
     title: "Subscription video catalogs",
     pitch:
